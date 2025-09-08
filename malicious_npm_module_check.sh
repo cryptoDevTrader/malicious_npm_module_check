@@ -80,26 +80,23 @@ found_match=0
 
 # Find all package.json files recursively
 find "$START_DIR" -type f \( -path '*/node_modules/*/package.json' -o -path '*/node_modules/package-lock.json' \) | while read -r file; do
-    # Only process package.json files within a node_modules directory
-    if echo "$file" | grep -q '/node_modules/'; then
-        # Extract the module name and version using jq
-        module_name=$(jq -r '.name // empty' "$file")
-        installed_version=$(jq -r '.version // empty' "$file")
+    # Extract the module name and version using jq
+    module_name=$(jq -r '.name // empty' "$file")
+    installed_version=$(jq -r '.version // empty' "$file")
 
-        # Check if the module is in the malicious list
-        if [ -n "$module_name" ] && [ -n "$installed_version" ]; then
-            # Get the malicious versions for the module
-            malicious_versions=$(echo "$MODULES" | jq -r --arg mod "$module_name" '.[$mod] // [] | .[]')
-            
-            # Check if the installed version is in the malicious versions
-            for version in $malicious_versions; do
-                if [ "$installed_version" = "$version" ]; then
-                    module_path=$(dirname "$file")
-                    echo "Found '$module_name' at version $installed_version at $module_path"
-                    found_match=1
-                fi
-            done
-        fi
+    # Check if the module is in the malicious list
+    if [ -n "$module_name" ] && [ -n "$installed_version" ]; then
+        # Get the malicious versions for the module
+        malicious_versions=$(echo "$MODULES" | jq -r --arg mod "$module_name" '.[$mod] // [] | .[]')
+        
+        # Check if the installed version is in the malicious versions
+        for version in $malicious_versions; do
+            if [ "$installed_version" = "$version" ]; then
+                module_path=$(dirname "$file")
+                echo "Found '$module_name' at version $installed_version at $module_path"
+                found_match=1
+            fi
+        done
     fi
 done
 
