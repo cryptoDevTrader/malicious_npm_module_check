@@ -28,6 +28,10 @@ echo "--------------------------------------------------"
 # This list includes modules affected by hijacking, protestware, malware, and severe vulnerabilities.
 MODULES='{
     "@babel/traverse": ["7.23.6"],
+    "@coveops/abi": ["2.0.1"],
+    "@duckdb/duckdb-wasm": ["1.29.2"],
+    "@duckdb/node-api": ["1.3.3"],
+    "@duckdb/node-bindings": ["1.3.3"],
     "@nx/devkit": ["20.9.0", "21.5.0"],
     "@nx/enterprise-cloud": ["3.2.0"],
     "@nx/eslint": ["21.5.0"],
@@ -48,6 +52,7 @@ MODULES='{
     "colors": ["1.4.1", "1.4.44"],
     "cross-env": ["5.1.5", "5.1.6"],
     "debug": ["4.4.2"],
+    "duckdb": ["1.3.3"],
     "error-ex": ["1.3.3"],
     "eslint-config-prettier": ["8.10.1", "9.1.1", "10.1.6", "10.1.7"],
     "eslint-plugin-prettier": ["4.2.2", "4.2.3"],
@@ -63,6 +68,7 @@ MODULES='{
     "node-ipc": ["9.2.2", "11.0.0"],
     "nx": ["20.9.0", "20.10.0", "20.11.0", "20.12.0", "21.5.0", "21.6.0", "21.7.0", "21.8.0"],
     "pac-resolver": ["5.0.0"],
+    "prebid": ["10.9.1", "10.9.2"],
     "rand-user-agent": ["1.0.110", "2.0.83", "2.0.84"],
     "rc": ["1.2.9"],
     "simple-swizzle": ["0.2.3"],
