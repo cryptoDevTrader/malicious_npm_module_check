@@ -122,8 +122,8 @@ MODULES='{
 # Initialize a flag to track if any matching modules are found
 found_match=0
 
-# Find all package.json files recursively
-find "$START_DIR" -type f \( -path '*/node_modules/*/package.json' -o -path '*/node_modules/package-lock.json' \) | while read -r file; do
+# Find all package.json files recursively inside node_modules directories
+find "$START_DIR" -type f -path '*/node_modules/*/package.json' | while read -r file; do
     # Extract the module name and version using jq
     module_name=$(jq -r '.name // empty' "$file")
     installed_version=$(jq -r '.version // empty' "$file")
